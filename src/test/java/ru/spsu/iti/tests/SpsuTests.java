@@ -23,7 +23,7 @@ public class SpsuTests extends TestBase {
             $$(".leading").shouldHave(sizeGreaterThanOrEqual(1));
         });
         step("Проверка заголовка блока новостей ", () -> {
-           $(".page-title").shouldHave(Condition.text("Новости9"));
+           $(".page-title").shouldHave(Condition.text("Новости"));
         });
     }
 }
