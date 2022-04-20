@@ -5,9 +5,11 @@ import com.codeborne.selenide.Condition;
 import io.qameta.allure.Description;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import ru.spsu.iti.TestBase;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 import static com.codeborne.selenide.Configuration.baseUrl;
@@ -45,7 +47,7 @@ public class SpsuTests extends TestBase {
     @Test
     @Description("Проверка вкладки Наука")
     @DisplayName("Проверка вкладки Наука")
-    void searchInstitVisibleTests() {
+    void searchScienceVisibleTests() {
         step("Открываем сайт", () -> open(baseUrl));
         step("Кликаем на ссылку 'Наука' ", () -> {
             $(".dropdown-toggle",1).click();
@@ -61,6 +63,21 @@ public class SpsuTests extends TestBase {
         });
         step("Проверка наличия поздравления ", () -> {
             $(".article-content").shouldHave(Condition.text("ПОЗДРАВЛЯЕМ"));
+        });
+    }
+    @Test
+    @Description("Проверка вкладки Студенту")
+    @DisplayName("Проверка вкладки Студенту")
+    void searchCongratulationsVisibleTests() {
+        step("Открываем сайт", () -> open(baseUrl));
+        step("Кликаем на ссылку 'Студенту' ", () -> {
+            $(".dropdown-toggle",3).click();
+        });
+        step("Кликаем на ссылку 'Оплата за обучение' ", () -> {
+           $x("(//a[text()[normalize-space()='Оплата за обучение']])[3]").click();
+        });
+        step("Проверка наличия стоимости обучения ", () -> {
+            $(".page-title").shouldHave(Condition.text("оплата за обучение"));
         });
     }
 }
