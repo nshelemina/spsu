@@ -79,7 +79,7 @@ public class SpsuTests extends TestBase {
            $x("(//a[text()[normalize-space()='Оплата за обучение']])[3]").click();
         });
         step("Проверка наличия стоимости обучения ", () -> {
-            $(".page-title").shouldHave(text("оплата за обучение"));
+            $(".page-title").shouldHave(text("оплата за Обучение"));
         });
     }
     @Test
