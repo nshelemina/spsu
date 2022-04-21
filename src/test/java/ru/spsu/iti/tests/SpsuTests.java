@@ -9,6 +9,8 @@ import org.openqa.selenium.By;
 import ru.spsu.iti.TestBase;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -25,7 +27,7 @@ public class SpsuTests extends TestBase {
             $$(".leading").shouldHave(sizeGreaterThanOrEqual(1));
         });
         step("Проверка заголовка блока новостей ", () -> {
-           $(".page-title").shouldHave(Condition.text("Новости"));
+           $(".page-title").shouldHave(text("Новости"));
         });
     }
     @Test
@@ -37,11 +39,11 @@ public class SpsuTests extends TestBase {
             $(".dropdown-toggle").click();
         });
         step("Проверка адреса Института ", () -> {
-            $(".article-intro").shouldHave(Condition.text("Адрес: Приднестровская Молдавская Республика, 3200-MD,  \n" +
+            $(".article-intro").shouldHave(text("Адрес: Приднестровская Молдавская Республика, 3200-MD,  \n" +
                     "г. Тирасполь, ул. Восстания, 2а."));
         });
         step("Проверка истории Института ", () -> {
-            $(".article-intro",1).shouldHave(Condition.text("Статус института инженерно-технический факультет получил в 2006 году."));
+            $(".article-intro",1).shouldHave(text("Статус института инженерно-технический факультет получил в 2006 году."));
         });
     }
     @Test
@@ -62,7 +64,7 @@ public class SpsuTests extends TestBase {
             $("[href='/nauka/nauchnye-konferentsii-i-seminary/317-o-provedenii-studencheskoj-nauchnoj-konferentsii-iti-po-itogam-2016-g']").click();
         });
         step("Проверка наличия поздравления ", () -> {
-            $(".article-content").shouldHave(Condition.text("ПОЗДРАВЛЯЕМ"));
+            $(".article-content").shouldHave(text("ПОЗДРАВЛЯЕМ"));
         });
     }
     @Test
@@ -77,7 +79,67 @@ public class SpsuTests extends TestBase {
            $x("(//a[text()[normalize-space()='Оплата за обучение']])[3]").click();
         });
         step("Проверка наличия стоимости обучения ", () -> {
-            $(".page-title").shouldHave(Condition.text("оплата за обучение"));
+            $(".page-title").shouldHave(text("оплата за обучение"));
+        });
+    }
+    @Test
+    @Description("Проверка вкладки Абитуриенту")
+    @DisplayName("Проверка вкладки Абитуриенту")
+    void searchEnrolleeVisibleTests() {
+        step("Открываем сайт", () -> open(baseUrl));
+        step("Кликаем на ссылку 'Абитуриенту' ", () -> {
+            $(".dropdown-toggle",2).click();
+        });
+        step("Кликаем на ссылку 'Приемная кампания' ", () -> {
+            $x("(//a[@href='/abiturientu/priemnaya-kampaniya'])[3]").click();
+        });
+        step("Проверка наличия заголовка ", () -> {
+            $(".page-title").shouldHave(text("Приемная кампания"));
+        });
+    }
+    @Test
+    @Description("Проверка вкладки Абитуриенту")
+    @DisplayName("Проверка вкладки Абитуриенту")
+    void searchEnrolleeСontentVisibleTests() {
+        step("Открываем сайт", () -> open(baseUrl));
+        step("Кликаем на ссылку 'Абитуриенту' ", () -> {
+            $(".dropdown-toggle",2).click();
+        });
+        step("Кликаем на ссылку 'Приемная кампания' ", () -> {
+            $x("(//a[@href='/abiturientu/priemnaya-kampaniya'])[3]").click();
+        });
+        step("Проверка наличия блока с контентом ", () -> {
+            $(".article-content").shouldBe(visible);
+        });
+    }
+    @Test
+    @Description("Проверка вкладки Абитуриенту")
+    @DisplayName("Проверка вкладки Абитуриенту")
+    void searchCopywriterVisibleTests() {
+        step("Открываем сайт", () -> open(baseUrl));
+        step("Кликаем на ссылку 'Абитуриенту' ", () -> {
+            $(".dropdown-toggle",2).click();
+        });
+        step("Кликаем на ссылку 'Приемная кампания' ", () -> {
+            $x("(//a[@href='/abiturientu/priemnaya-kampaniya'])[3]").click();
+        });
+        step("Проверка наличия блока с контентом ", () -> {
+            $("#t3-footer").shouldBe(visible);
+        });
+    }
+    @Test
+    @Description("Проверка вкладки Абитуриенту")
+    @DisplayName("Проверка вкладки Абитуриенту")
+    void searchCopywriterTests() {
+        step("Открываем сайт", () -> open(baseUrl));
+        step("Кликаем на ссылку 'Абитуриенту' ", () -> {
+            $(".dropdown-toggle",2).click();
+        });
+        step("Кликаем на ссылку 'Приемная кампания' ", () -> {
+            $x("(//a[@href='/abiturientu/priemnaya-kampaniya'])[3]").click();
+        });
+        step("Проверка наличия блока с контентом ", () -> {
+            $(".module").shouldBe(text("Инженерно-технический институт ПГУ им. Т.Г. Шевченко."));
         });
     }
 }
