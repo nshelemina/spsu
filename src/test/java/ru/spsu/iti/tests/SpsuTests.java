@@ -142,5 +142,35 @@ public class SpsuTests extends TestBase {
             $(".module").shouldBe(text("Инженерно-технический институт ПГУ им. Т.Г. Шевченко."));
         });
     }
+    @Test
+    @Description("Проверка вкладки Преподавателю")
+    @DisplayName("Проверка вкладки Преподавателю")
+    void searchTeacherTests() {
+        step("Открываем сайт", () -> open(baseUrl));
+        step("Кликаем на ссылку 'Преподавателю' ", () -> {
+            $(".dropdown-toggle",4).click();
+        });
+        step("Кликаем на ссылку 'Образовательные стандарты' ", () -> {
+            $x("(//a[@href='/prepodavatelyu/informatsiya-dlya-prepodavatelej'])[3]").click();
+        });
+        step("Проверка наличия блока с контентом ", () -> {
+            $(".t3-footer").shouldBe(text("3300, г. Тирасполь, ул. Восстания, 2а"));
+        });
+    }
+    @Test
+    @Description("Проверка вкладки Образование")
+    @DisplayName("Проверка вкладки Образование")
+    void searchEducationTests() {
+        step("Открываем сайт", () -> open(baseUrl));
+        step("Кликаем на ссылку 'Образование' ", () -> {
+            $(".dropdown-toggle",5).click();
+        });
+        step("Кликаем на ссылку 'Образовательные стандарты' ", () -> {
+            $x("(//a[@href='/obrazovanie1/raspisanie-zanyatij-obr'])[3]").click();
+        });
+        step("Проверка наличия блока с контентом ", () -> {
+            $(".page-title").shouldBe(text("Расписание занятий и звонков"));
+        });
+    }
 }
 
