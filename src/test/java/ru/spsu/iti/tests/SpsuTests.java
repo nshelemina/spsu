@@ -172,5 +172,51 @@ public class SpsuTests extends TestBase {
             $(".page-title").shouldBe(text("Расписание занятий и звонков"));
         });
     }
+    @Test
+    @Description("Проверка вкладки Гостевая книга")
+    @DisplayName("Проверка вкладки Гостевая книга")
+    void searchBookTests() {
+        step("Открываем сайт", () -> open(baseUrl));
+        step("Кликаем на ссылку 'Гостевая книга' ", () -> {
+            $x("//li[@data-id='1368']//a[1]").click();
+        });
+        step("Проверка наличия блока с контентом ", () -> {
+            $(".componentheading").shouldBe(text("Гостевая книга"));
+        });
+    }
+    @Test
+    @Description("Проверка вкладки Гостевая книга")
+    @DisplayName("Проверка вкладки Гостевая книга")
+    void searchMessageTests() {
+        step("Открываем сайт", () -> open(baseUrl));
+        step("Кликаем на ссылку 'Гостевая книга' ", () -> {
+            $x("//li[@data-id='1368']//a[1]").click();
+        });
+        step("Кликаем на кнопку 'Добавить сообщение' ", () -> {
+            $(".btn").click();
+        });
+        step("Проверка наличия блока с контентом ", () -> {
+            $(".componentheading").shouldBe(text("Гостевая книга - Добавить сообщение"));
+        });
+    }
+    @Test
+    @Description("Проверка вкладки Гостевая книга")
+    @DisplayName("Проверка вкладки Гостевая книга")
+    void searchBackTests() {
+        step("Открываем сайт", () -> open(baseUrl));
+        step("Кликаем на ссылку 'Гостевая книга' ", () -> {
+            $x("//li[@data-id='1368']//a[1]").click();
+        });
+        step("Кликаем на кнопку 'Добавить сообщение' ", () -> {
+            $(".btn").click();
+        });
+        step("Кликаем на кнопку 'Вернуться' ", () -> {
+            $(".btn").click();
+        });
+        step("Проверка наличия блока с контентом ", () -> {
+            $(".componentheading").shouldBe(text("Гостевая книга"));
+        });
+    }
+
 }
 
