@@ -68,6 +68,21 @@ public class SpsuTests extends TestBase {
         });
     }
     @Test
+    @Description("Проверка вкладки Наука")
+    @DisplayName("Проверка вкладки Наука")
+    void searchScienceTests() {
+        step("Открываем сайт", () -> open(baseUrl));
+        step("Кликаем на ссылку 'Наука' ", () -> {
+            $(".dropdown-toggle",1).click();
+        });
+        step("Кликаем на ссылку 'Научная деятельность' ", () -> {
+            $x("(//a[@href='/nauka/nauchnaya-deyatelnost'])[3]").click();
+        });
+        step("Проверка наличия блока с контеном ", () -> {
+            $(".content-category").shouldHave(text("Научная деятельность"));
+        });
+    }
+    @Test
     @Description("Проверка вкладки Студенту")
     @DisplayName("Проверка вкладки Студенту")
     void searchCongratulationsVisibleTests() {
@@ -95,6 +110,21 @@ public class SpsuTests extends TestBase {
         });
         step("Проверка наличия заголовка ", () -> {
             $(".page-title").shouldHave(text("Приемная кампания"));
+        });
+    }
+    @Test
+    @Description("Проверка вкладки Абитуриенту")
+    @DisplayName("Проверка вкладки Абитуриенту")
+    void searchEnrolleeTests() {
+        step("Открываем сайт", () -> open(baseUrl));
+        step("Кликаем на ссылку 'Абитуриенту' ", () -> {
+            $(".dropdown-toggle",2).click();
+        });
+        step("Кликаем на ссылку 'Перечень документов для поступления' ", () -> {
+            $x("(//a[@href='/abiturientu/perechen-dokumentov-dlya-postupleniya'])[3]").click();
+        });
+        step("Проверка наличия заголовка ", () -> {
+            $(".page-title").shouldHave(text("Перечень документов для поступления"));
         });
     }
     @Test
@@ -217,6 +247,5 @@ public class SpsuTests extends TestBase {
             $(".componentheading").shouldBe(text("Гостевая книга"));
         });
     }
-
 }
 
