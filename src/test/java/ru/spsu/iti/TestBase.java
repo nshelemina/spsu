@@ -2,9 +2,7 @@ package ru.spsu.iti;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.junit5.AllureJunit5;
-import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,7 +14,6 @@ import ru.spsu.iti.helpers.AllureAttachments;
 public class TestBase {
     @BeforeAll
     static void setUp() {
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
         Configuration.baseUrl = "http://iti.spsu.ru";
         Configuration.startMaximized = true;
         Configuration.remote = System.getProperty("url");
